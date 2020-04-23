@@ -151,3 +151,29 @@ coldNode.addChild(lemonade)
 coldNode.addChild(milkshake)
 
 print(tree.description)
+
+/*********************************************************
+*  Binary Tree
+*********************************************************/
+
+/*
+         10
+        /  \
+       5    14
+      /    /  \
+     1    11   20
+ */
+
+class BinaryNode{
+    weak var parent:BinaryNode?
+    let value:Int
+    var leftChild:BinaryNode
+    var rightChild:BinaryNode
+    
+    init(value:Int,leftChild:BinaryNode,rightChild:BinaryNode) {
+        self.value = value
+        self.leftChild = leftChild
+        self.rightChild = rightChild
+    }
+    
+}

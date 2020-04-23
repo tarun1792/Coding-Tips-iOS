@@ -3,6 +3,41 @@
 import UIKit
 
 var str = "Hello, playground"
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++Balance Paranthesis problem *********************************/
+
+func isPranathesisBalanced(str:String) -> Bool{
+    var stack = [Character]()
+    
+    for char in str{
+        // check if char is on type (,{,]
+        if ["(","{","["].contains(char){
+            // add the char to stack
+            stack.append(char)
+        }else{
+            // check if the stack is empty than return false
+            if stack.isEmpty {return false}
+            
+            // check if last element of stack is not { for char } and return false
+            if (char == "}") { return stack.last! == "{"}
+            
+            // check if last elemet of stack is not ( for char ) and return false
+            if char == ")" { return stack.last! == "("}
+            
+            // check if last element of stack is not [ for char ] and return false
+            if char == "]" {return stack.last! == "{"}
+            
+            // if all false conditions are not passed than pop the last element
+            stack.popLast()
+        }
+    }
+    
+    // Return if the given stack is empty or not. -> if empty than balanced if not empty than unbalanced
+    return stack.isEmpty
+}
+
+print(isPranathesisBalanced(str: "[({})]"))
+
+
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++ Find sum of digits ++++++++++++++++++++++++++++++++++++++++++*/
 
 // for finding the some of digits
