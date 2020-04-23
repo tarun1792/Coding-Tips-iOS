@@ -490,6 +490,29 @@ func binarySearch(search value: Int , in array:[Int])->Bool{
 print("\nbinary search")
 print(binarySearch(search: 10, in: [0,1,3,5,7,9,10,12,14,15,16,61]))
 
+// Binary search method 2
+
+func binarySearch(in numbers: [Int], for value: Int) -> Int?
+{
+    var left = 0
+    var right = numbers.count - 1
+
+    while left <= right {
+
+        let middle = Int(floor(Double(left + right) / 2.0))
+
+        if numbers[middle] < value {
+            left = middle + 1
+        } else if numbers[middle] > value {
+            right = middle - 1
+        } else {
+            return middle
+        }
+    }
+
+    return nil
+}
+
 
 // ++++++++++++++++++++++++++++++++ find if triplet exists ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
