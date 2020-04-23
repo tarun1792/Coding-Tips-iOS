@@ -41,3 +41,49 @@ func linkedList(){
 }
 
 linkedList()
+
+
+/*********************************************************
+ *  LINKED LISTS QUESTIONS
+ *********************************************************/
+ 
+/* WAP to remove duplicates from and unsorted linked list */
+
+class Node1{
+    var next:Node1?
+    var data:Int?
+    
+    init(data:Int){
+        self.data = data
+    }
+    
+    func appendToTail(data:Int){
+        let newNode = Node1(data: data)
+        var n = self
+        while(n.next != nil){
+          n = n.next!
+        }
+        n.next = newNode
+    }
+    
+    func printList(){
+        var string = "start->"
+        var n = self
+        while(n.next != nil){
+            string += "\(n.data ?? -1)->"
+            n = n.next!
+        }
+        string += "\(n.data ?? -1)->"
+        string += "finished"
+        
+        print(string)
+    }
+}
+
+// lets create a linked list
+
+let  head = Node1(data: 1)
+head.appendToTail(data: 2)
+head.appendToTail(data: 3)
+head.appendToTail(data: 4)
+head.printList()

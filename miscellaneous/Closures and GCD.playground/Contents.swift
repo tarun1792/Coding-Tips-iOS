@@ -134,3 +134,65 @@ do {
  */
 
 //+++++++++++++++++=============================================================================================================================================
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++ NSURLConnection ++++++++++++++++++++++++++++++++++++++++++*/
+
+// creating a URL to download
+let url = NSURL(string: "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")! as URL
+
+// creating a URL request for NSURLConnection
+let request = URLRequest(url: url)
+
+do{
+    // tring to run a reqquest
+    let data = try? NSURLConnection.sendSynchronousRequest(request, returning: nil)
+    
+    // if no error thrown we create a json object with data we got in response
+    let jsonSerialized = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]
+    
+    //extract the data from the json object
+    if let json = jsonSerialized , let _ = json["url"], let _ = json["explanation"]{
+    }
+    
+}catch{
+    // here we catch the error
+}
+
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++ URL SESSION ++++++++++++++++++++++++++++++++++++++++++*/
+
+
+// URL for session url
+let sessionUrl = URL(string: "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
+
+// creating a task with URLSession singleton class
+let task = URLSession.shared.dataTask(with: sessionUrl!) { (data, response, error) in
+    
+    // we check if any error exists
+    if error != nil {
+        print("Error has arised")
+    }
+    
+    // in do we try to serialize the data with json serialzer
+    do {
+    let jsonSerilized = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]
+    
+    //extract the data from the json object
+    if let json = jsonSerilized , let url = json["url"], let explanation = json["explanation"]{
+        print("\n  \(url) \n \n \(explanation)")
+        }
+        
+    }catch{
+        
+    }
+
+    
+}
+
+// resume the past to download
+task.resume()
+
+
+// this need to be run for catching async responses
+//RunLoop.main.run()
+
