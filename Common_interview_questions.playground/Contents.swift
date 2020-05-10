@@ -18,13 +18,13 @@ func isPranathesisBalanced(str:String) -> Bool{
             if stack.isEmpty {return false}
             
             // check if last element of stack is not { for char } and return false
-            if (char == "}") { return stack.last! == "{"}
+            if (char == "}") && (stack.last! != "{") {return false}
             
             // check if last elemet of stack is not ( for char ) and return false
-            if char == ")" { return stack.last! == "("}
+            if (char == ")") && (stack.last! != "(") { return false}
             
             // check if last element of stack is not [ for char ] and return false
-            if char == "]" {return stack.last! == "{"}
+            if (char == "]") && (stack.last! != "["){return false}
             
             // if all false conditions are not passed than pop the last element
             stack.popLast()
